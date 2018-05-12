@@ -1,8 +1,5 @@
 FROM golang:1.8
 
-WORKDIR /music
-COPY /music/. .
-
 WORKDIR /go/src/app
 COPY . .
 
