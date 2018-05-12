@@ -1,6 +1,6 @@
-package json
+package JsonStructs
 
-type PagesJSON []struct {
+type JsonPages []struct {
 	Page    int `json:"page"`
 	Threads []struct {
 		No           int `json:"no"`

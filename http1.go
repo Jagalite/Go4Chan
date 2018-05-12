@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"fmt"
+	"app/JsonStructs"
 )
 
 func hello(w http.ResponseWriter, r *http.Request) {
@@ -24,10 +25,16 @@ func main() {
 	defer response.Body.Close();
 
 	contents, err := ioutil.ReadAll(response.Body)
-	if err != nil {
+	if err != nil || contents == nil {
 		fmt.Println(err)
 	}
 
-	fmt.Println(string(contents))
+
+	var jsonRoot = JsonStructs.GetAllBoards()
+	var allBoards = jsonRoot.Boards
+
+	for index, board := range allBoards {
+		fmt.Printf("%d - %s \n", index, board.Title)
+	}
 
 }

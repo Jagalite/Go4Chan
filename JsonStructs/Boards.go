@@ -1,6 +1,12 @@
-package json
+package JsonStructs
 
-type BoardsJSON struct {
+import (
+	"net/http"
+	"fmt"
+	"encoding/json"
+)
+
+type JsonBoards struct {
 	Boards []struct {
 		Board           string `json:"board"`
 		Title           string `json:"title"`
@@ -61,4 +67,17 @@ type BoardsJSON struct {
 		UN string `json:"UN"`
 		WP string `json:"WP"`
 	} `json:"troll_flags"`
+}
+
+func GetAllBoards() JsonBoards {
+	response, err := http.Get("https://a.4cdn.org/boards.json")
+	if err != nil {
+		fmt.Println(err)
+	}
+	defer response.Body.Close();
+
+	var boards JsonBoards
+	json.NewDecoder(response.Body).Decode(&boards)
+
+	return boards
 }
