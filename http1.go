@@ -37,4 +37,16 @@ func main() {
 		fmt.Printf("%d - %s \n", index, board.Title)
 	}
 
+
+
+
+
+	var pagesRoot = JsonStructs.GetAllPages("w")
+	for index, page := range pagesRoot {
+		fmt.Printf("Index: %d Page: %d \n", index, page.Page)
+		for index, thread := range page.Threads {
+			fmt.Printf("Index: %d Thread: %d\n", index, thread.No)
+		}
+	}
+
 }
