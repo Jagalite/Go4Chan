@@ -1,7 +1,7 @@
 package main
 
 import (
-	"app/JsonStructs"
+	"Go4Chan/JsonStructs"
 	"fmt"
 	"io"
 	"io/ioutil"
