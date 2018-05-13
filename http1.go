@@ -1,11 +1,11 @@
 package main
 
 import (
+	"app/JsonStructs"
+	"fmt"
 	"io"
 	"io/ioutil"
 	"net/http"
-	"fmt"
-	"app/JsonStructs"
 )
 
 func hello(w http.ResponseWriter, r *http.Request) {
@@ -22,13 +22,12 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	defer response.Body.Close();
+	defer response.Body.Close()
 
 	contents, err := ioutil.ReadAll(response.Body)
 	if err != nil || contents == nil {
 		fmt.Println(err)
 	}
-
 
 	var jsonRoot = JsonStructs.GetAllBoards()
 	var allBoards = jsonRoot.Boards
@@ -37,10 +36,6 @@ func main() {
 		fmt.Printf("%d - %s \n", index, board.Title)
 	}
 
-
-
-
-
 	var pagesRoot = JsonStructs.GetAllPages("w")
 	for index, page := range pagesRoot {
 		fmt.Printf("Index: %d Page: %d \n", index, page.Page)
@@ -48,5 +43,7 @@ func main() {
 			fmt.Printf("Index: %d Thread: %d\n", index, thread.No)
 		}
 	}
+
+	fmt.Println("Jaga")
 
 }
